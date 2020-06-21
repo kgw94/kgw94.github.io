@@ -1,0 +1,256 @@
+/*
+ * theme.css
+ */
+ :root{
+   --primary-background:#d3d3d3;
+   --primary-color:#78909C;
+  }
+ *{
+   margin:0px;
+   padding:0px;   
+ }
+ #header{
+    background-color:#d3d3d3;
+	display:flex;
+	flex-direction:column;
+	padding: 2.3em 0;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+  }
+  .company-logo{
+    margin-left:6%;
+	display:flex;
+	flex-direction:row;
+	justify-content:space-between;
+ }
+ #header-img{
+   width:40px;
+   height:40px;
+   cursor:pointer;
+   align-self:center;
+ }
+ #nav-bar{
+    margin: 1.5em 0 0 3%;
+ }
+ #nav-bar ul {
+    list-style-type:none;
+    
+ }
+ #nav-bar ul li{
+    display:inline;
+	padding:15px;
+ }
+ #nav-bar li a{
+    text-decoration:none;
+	color:var(--primary-color);
+ }
+ #nav-bar li a:active{
+    color: #000;
+ }
+ #nav-bar li a:hover{
+    color: #B6B6B6;
+ }
+ #form-section{
+    margin-top:80px;
+    grid-area:a0;
+	display:flex;
+	justify-content:center;
+	flex-direction:column;
+    height:480px;
+    background-image:url(activity.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center;
+ }
+ .form-subscribe{
+    padding:25px;
+	align-self:center !important;
+	background-color:#444;
+	opacity:0.7;
+	min-width:300px;
+	min-height:150px;
+	border-radius:2px;
+	text-align:center;
+	
+ }
+ .form-subscribe h1{
+   color:#fff;
+   padding:10px;
+ }
+ #email{
+   height:30px;
+   min-width:99.3%;
+ }
+ #features{
+    padding:20px;
+    display:grid;
+	grid-template-columns:300px; 700px;
+	grid-template-areas:
+	"a0 a0"
+	"a2 a2"
+	"a2 a2"
+	"a3 a3"
+	"a4 a4"
+	"a5 a5";
+ }
+ .grid-area1,.grid-area2 ,.form-data{
+    padding:10px;
+ }
+ .grid-area2{
+    grid-area:a2;
+	overflow-wrap: break-word;
+	line-height:23px;
+	display:grid;
+	grid-template-columns:200px 700px;
+	grid-template-areas:
+	"n1 n2"
+	"n3 n4"
+	"n5 n6";
+	
+ }
+.image{
+   width:100px;
+   height:100px;
+}
+ .grid-area2 h2{
+	color:var(--primary-color);
+ }
+ .image-ico-1{
+   grid-area:n1;
+ }
+ .image-ico-2{
+   grid-area:n3;
+ }
+ .image-ico-3{
+   grid-area:n5;
+ }
+ 
+ .feature-data-1 ,.feature-data-2 ,.feature-data-3{
+    padding:20px;
+ }
+ .feature-data-1{
+   grid-area:n2;
+ }
+ .feature-data-2{
+   grid-area:n4;
+ }
+ .feature-data-3{
+   grid-area:n6;
+ }
+ #video-box{
+   margin-top:80px;
+   grid-area:a3;
+   min-height:250px;
+   display:flex;
+   justify-content:center;
+   align-items:center;
+ }
+ #pricing{
+   grid-area:a4;
+   display:flex;
+   flex-flow:row wrap;
+   justify-content:space-between;
+   padding:25px;
+  }
+  .price1 , .price2 ,.price3{
+     width:250px;
+	 height:250px;
+	 background-color:#d3d3d3;
+	
+  }
+  span.tick{
+    color:green;
+  }
+  span.cancel{
+    color:red;
+  }
+ .price-card{
+    min-width:280px;
+	margin:auto;
+	text-align:center;
+	font-family:arial;
+	border:1px solid #ccc;
+	border-radius:3px;
+	min-height:350px;
+ }
+ .price-card-header{
+   min-width:280px;
+   background-color:#B0BEC5;
+   color:#607D8B;
+   font-weight:bold;
+ }
+ .price-card h3, .price-card-content{
+    padding:15px;
+ }
+.price-card-btn{
+   border:none;
+   outline:0;
+   color:#fff;
+   background-color:#607D8B;
+   font-size:15px;
+   width:100%;
+   padding:12px;
+   text-align:center;
+   cursor:pointer;
+}
+.price-card-btn:hover{
+   background-color:#78909C;
+}
+ #footer{
+   background-color:#d3d3d3;
+   width:100%;
+   height:80px;
+   grid-area:a5;
+   display:flex;
+   justify-content:center;
+   align-items:flex-end;
+   flex-direction:column;
+ }
+ #footer ul li {
+    display:inline;
+	padding:10px;
+ }
+ #footer ul li a{
+   text-decoration:none;
+   color:#78909C;
+   font-size:17px;
+   font-weight:bold;
+ }
+ #footer ul li a:hover{
+   color:#000;
+ }
+ .danger-btn{
+   border:none;
+   outline:0;
+   color:#fff;
+   background-color:#FF5722;
+   font-size:15px;
+   width:100%;
+   padding:12px;
+   text-align:center;
+   cursor:pointer;
+   
+ }
+ .danger-btn:hover{
+   background-color:#F4511E;
+ }
+ .package-table{
+   width:85%;
+   margin:auto;
+ }
+ .package-table td {
+    text-align:left;
+ }
+ @media screen and (min-width:600px){
+    #header{
+	  flex-direction:row;
+	  justify-content:space-between;
+	}
+	#nav-bar{
+	  align-self:center;
+	  margin: 0 0.8em 0 0;
+	}
+	
+ }
