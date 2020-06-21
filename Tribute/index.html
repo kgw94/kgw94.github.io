@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title> Tribute Page </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<style type="text/css">
+:root{ 
+   --primary-color:hsl(60, 75%, 25%);
+ }
+ *{
+   margin:0px;
+   padding:0px;
+  }
+  #main{
+    display:grid !important;
+	grid-gap:1em;
+	grid-template-areas:
+	"title"
+	"image"
+	"tributeinfo"
+	"footer";
+	 background-color:#ffffff;
+	 font-family:Helvetica,Arial,sans-serif;
+	 font-weight:normal;
+  }
+  #title , #img-caption,#footer{
+      text-align:center;
+  }
+  #title{
+     padding-top:50px;
+     grid-area:title;
+	 height:150px;
+     display:block;
+     background-color:hsl(60, 40%, 40%);
+     color:#fff;
+     font-family:Arial;
+  }
+  #img-div{
+     grid-area:image;
+  }
+  #image{
+    min-width:100%;
+	height:auto;
+	display:block;
+  }
+  #img-caption {
+     padding:15px;
+  }
+  #tribute-info{
+     grid-area:tributeinfo;
+	 margin:0 auto;
+	 width:600px;
+  }
+  #tribute-info h3{
+     padding:10px;
+	 color:var(--primary-color);
+  }
+  #tribute-info li {
+     line-height:20px;
+	 padding-bottom:15px;
+  }
+  #footer{
+     grid-area:footer;
+	 height:80px;
+	 margin-top:50px;
+  }
+  a#tribute-link{ 
+      color:#000; 
+	  text-decoration:none; 
+	  
+   }
+  a#tribute-link:hover{ 
+      text-decoration:underline; 
+	  color:var(--primary-color);
+   }
+</style>
+</head>
+<body>
+  <div id="main">
+   <div id="title"> 
+	  <h1> Dr. Norman Borlaug </h1>
+	  <p><strong>The man who saved a billion lives</strong></p>
+    </div>
+    <div id="img-div">
+       <img id="image" src="src/imgs/drnorman.jpg" alt="">
+	   <div id="img-caption">
+	     <p> Dr. Norman Borlaug, second from left, trains biologists in Mexico on how to increase wheat yields - part of his life-long war on hunger.</p>
+	   </div>
+	</div>
+	<div id="tribute-info">
+	  <h3 class="tribute-info-heading"> Here's a time line of Dr. Borlaug's life <span>&#58;</span></h3>
+	  <ul>
+	    <li><b><time>1914</time>&nbsp;<span>&#8211;</span></b>&nbsp;Born in Cresco, Iowa</li>
+		<li><b><time>1933</time>&nbsp;<span>&#8211;</span></b>&nbsp;Leaves his family's farm to attend the University of Minnesota, thanks to a Depression era program known as the "National Youth Administration"</li>
+		<li><b><time>1935</time>&nbsp;<span>&#8211;</span></b>&nbsp;Has to stop school and save up more money. Works in the Civilian Conservation Corps, helping starving Americans. "I saw how food changed them", he said. "All of this left scars on me."</li>
+		<li><b><time>1934</time>&nbsp;<span>&#8211;</span></b>&nbsp; Finishes university and takes a job in the US Forestry Service</li>
+		<li><b><time>1938</time>&nbsp;<span>&#8211;</span></b>&nbsp; Marries wife of 69 years Margret Gibson. Gets laid off due to budget cuts. Inspired by Elvin Charles Stakman, he returns to school study under Stakman, who teaches him about breeding pest-resistent plants.</li>
+		<li><b><time>1941</time>&nbsp;<span>&#8211;</span></b>&nbsp;Tries to enroll in the military after the Pearl Harbor attack, but is rejected. Instead, the military asked his lab to work on waterproof glue, DDT to control malaria, disenfectants, and other applied science.</li>
+		<li><b><time>1942</time>&nbsp;<span>&#8211;</span></b>&nbsp;Receives a Ph.D. in Genetics and Plant Pathology</li>
+		<li><b><time>1944</time>&nbsp;<span>&#8211;</span></b>&nbsp;Rejects a 100% salary increase from Dupont, leaves behind his pregnant wife, and flies to Mexico to head a new plant pathology program. Over the next 16 years, his team breeds 6,000 different strains of disease resistent wheat - including different varieties for each major climate on Earth.</li>
+		<li><b><time>1945</time>&nbsp;<span>&#8211;</span></b>&nbsp;Discovers a way to grown wheat twice each season, doubling wheat yields</li>
+		<li><b><time>1953</time>&nbsp;<span>&#8211;</span></b>&nbsp;crosses a short, sturdy dwarf breed of wheat with a high-yeidling American breed, creating a strain that responds well to fertalizer. It goes on to provide 95% of Mexico's wheat.</li>
+		<li><b><time>1962</time>&nbsp;<span>&#8211;</span></b>&nbsp;Visits Delhi and brings his high-yielding strains of wheat to the Indian subcontinent in time to help mitigate mass starvation due to a rapidly expanding population</li>
+		<li><b><time>1970</time>&nbsp;<span>&#8211;</span></b>&nbsp;receives the Nobel Peace Prize</li>
+		<li><b><time>1983</time>&nbsp;<span>&#8211;</span></b>&nbsp;helps seven African countries dramatically increase their maize and sorghum yields</li>
+		<li><b><time>2000</time>&nbsp;<span>&#8211;</span></b>&nbsp; becomes a distinguished professor at Texas A&M University</li>
+		<li><b><time>2005</time>&nbsp;<span>&#8211;</span></b>&nbsp;states &ldquo;we will have to double the world food supply by 2050." Argues that genetically modified crops are the only way we can meet the demand, as we run out of arable land. Says that GM crops are not inherently dangerous because "we've been genetically modifying plants and animals for a long time. Long before we called it science, people were selecting the best breeds.&rdquo;</li>
+		<li><b><time>2009</time>&nbsp;<span>&#8211;</span></b>&nbsp; dies at the age of 95.</li>
+	  </ul>
+	  <p><i>&ldquo;Borlaug's life and achievement are testimony to the far-reaching contribution that one man's towering intellect, persistence and scientific vision can make to human peace and progress.&rdquo;
+
+-- Indian Prime Minister Manmohan Singh </i></p>
+	</div>
+	<div id="footer">
+	  <p>If you have time, you should read more about this incredible human being on his <a id="tribute-link" target="_blank" href="https://en.wikipedia.org/wiki/Norman_Borlaug"> Wikipedia entry.</a></p>
+	</div>
+  </div>
+<!-- <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"  type="text/javascript"></script> -->
+</body>
+</html>
