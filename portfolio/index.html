@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title> Homepage </title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="css/theme.css" media="all">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<style type="text/css">
+  @media screen and (min-width:500px){
+      @import url('css/theme.css');
+  }
+  @media screen and (max-width:500px){
+      @import url('css/theme.css');
+  }
+  .myButton {
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#768d87;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+        
+</style>
+</head>
+<body>
+<div id="container">
+   <header>
+        <nav id="navbar">
+           <ul> 
+             <li><a href="#welcome-section">Home</a></li>
+             <li><a href="#projects">Projects</a></li>
+             <li><a href="#">Blog</a></li>
+             <li><a  id="profile-link" href="https://www.github.com/kgw94" target="_blank">github</a></li>
+             <li><a href="#welcome-section">About</a></li>
+             <li><a href="#contact">Contact</a></li>
+           </ul>
+        </nav>
+   </header>
+   <main>
+        <section id="welcome-section">
+            <h1>Hello There, Welcome to my website.</h1>
+        </section>
+        <section id="projects">
+            <h3> My projects </h3>
+            <div class="project-list">
+               <div class="project-tile">
+                 <p class="tile-header"> project: Survey Form </p>
+                 <p> This is a freecodecamp responsive design project </p>
+                 <p><a href="index.html"> click to view </a></p>
+               </div>
+               <div class="project-tile">
+                <p class="tile-header"> project :Technical Documentation </p>
+                <p>This is a freecodecamp responsive design project   </p>
+                <p><a href="index.html"> click to view </a></p>
+              </div>
+              <div class="project-tile">
+                <p class="tile-header"> project :Others </p>
+                <p> This is a freecodecamp responsive design project </p>
+                <p><a href="index.html"> click to view </a></p>
+             </div>
+           </div>
+        </section>
+        <section id="contact">  
+           <div class="contact-form">
+            <h3 style="text-align:center;"> contact me </h3>
+             <form action="#">
+                <div class="form-control">
+                   <input type="email" name="email" id="email" Placeholder="Your email address">
+                </div>
+                <div class="form-control">
+                   <textarea cols="50" rows="10"> Your message here </textarea>
+                </div>
+                <div  style="text-align:center" class="form-control">
+                   <input class="myButton" type="submit" name="send" value="send">
+                </div>
+            </form>
+          </div> 
+        </section>
+   </main>
+   <footer id="footer">
+    <ul class="social">
+       <li><a href="#" target="_blank">Facebook </a></li>
+       <li><a href="#" target="_blank">Twitter</a></li>
+       <li><a href="#" target="_blank">Whatsapp</a></li>
+       <li><a  id="profile-link" href="https://github.com/kgw94" target="_blank">github</a></li>
+    </ul>
+    <p> copyright&nbsp;kgw94  &copy2020&nbsp;all rights reserved.</p>
+   </footer>
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</div>
+</body>
+</html>

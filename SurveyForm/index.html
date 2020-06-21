@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="css/theme.css">
+<title> Survey form </title>
+</head> 
+<body>
+<div id="container">
+   <h1 id="title"> Survey Form </h1>
+   <div id="inner-container">
+      <p id="description">Let us know how we can improve freeCodeCamp </p>
+	   <form id="survey-form" action="#">
+	    <div class="form-control">
+		   <label id="name-label" class="item-label" for="name"> Name </label>
+		   <input class="item-input" type="text" id="name" value="" placeholder="enter your name" required>
+		</div>
+		<div class="form-control">
+		   <label id="email-label" class="item-label" for="email"> Email </label>
+		   <input class="item-input" type="email" id="email" value="" placeholder="enter your email" required>
+		</div>
+		<div class="form-control">
+		   <label id="number-label" class="item-label" for="Age">Age </label>
+		   <input class="item-input" type="number" id="number" value="18" min="16" max="120" placeholder="Age" required>
+		</div>
+		<div class="form-control">
+		   <label class="item-label" for="role">Which option best describes your current role?</label>
+           <select name="role" class="item-input"  id="dropdown">
+		      <option value="student">
+			      Student
+			  </option>
+			  <option value="Full Time Job">
+			      Full Time Job
+			  </option>
+			  <option value="Full Time Learner">
+			      Full Time Learner
+			  </option>
+			  <option value="Prefer not to say">
+			      Prefer not to say
+			  </option>
+			  <option value="Other">
+			      Other
+			  </option>
+		   </select>
+		</div>
+		<div class="form-control">
+		    <label class="item-label" for="recomendation"> How likely is that you would recommend freeCodeCamp to a friend?</label>
+			<ul class="item-input">
+			   <li><label for="Definitely"><input type="radio" name="recomend" value="Definitely">&nbsp;Definitely</label></li>
+			   <li><label for="Maybe"><input type="radio" name="recomend" value="Maybe">&nbsp;Maybe</label></li>
+			   <li><label for="Not sure"><input type="radio" name="recomend" value="Not sure">&nbsp;Not sure</label></li>
+			</ul>
+		</div>
+		<div class="form-control">
+		   <label class="item-label" for=""> What do you like most in FCC: </label>
+		   <select class="item-input" id="dropdown">
+		      <option value="Challenges">
+			      Challenges
+			  </option>
+			   <option value="Projects">
+			      Projects 
+			  </option>
+			   <option value="Community">
+			      Community
+			  </option>
+			   <option value="Open source">
+			      Open Source
+			  </option>
+		   </select>
+		</div>
+		<div class="form-control">
+		   <label style="align-self:flex-start;" class="item-label" for="improvements">Things that should be improved in the future(Check all that apply):</label>
+           <ul class="item-input">
+               <li><label for="Front-end Projects"><input type="checkbox" name="improve" value="Front-end Projects">&nbsp;Front-end Projects</label></li>
+			   <li><label for="Back-end Projects"><input type="checkbox" name="improve" value="Back-end Projects">&nbsp;Back-end Projects</label></li>
+			   <li><label for="Data Visualization"><input type="checkbox" name="improve" value="Data Visualization">&nbsp;Data Visualization</label></li>
+			   <li><label for="Challenges"><input type="checkbox" name="improve" value="Challenges">&nbsp;Challenges</label></li>
+			   <li><label for="Open Source Community"><input type="checkbox" name="improve" value="Open Source Community">&nbsp;Open Source Community</label></li>
+			   <li><label for="Gitter help rooms"><input type="checkbox" name="improve" value="Gitter help rooms">&nbsp;Gitter help rooms</label></li>
+			   <li><label for="Videos"><input type="checkbox" name="improve" value="Videos">&nbsp;Videos</label></li>
+			   <li><label for="City Meetups"><input type="checkbox" name="improve" value="City Meetups">&nbsp;City Meetups</label></li>
+			   <li><label for="Wiki"><input type="checkbox" name="improve" value="Wiki">&nbsp;Wiki</label></li>
+			   <li><label for="Forum"><input type="checkbox" name="improve" value="Forum">&nbsp;Forum</label></li>
+			   <li><label for="Additional Courses"><input type="checkbox" name="improve" value="Additional Courses">&nbsp;Additional Courses</label></li>
+           </ul>		   
+		</div>
+		<div class="form-control">
+	      <label for="comments" class="item-label">Any Comments or Suggestions?</label>
+		  <textarea class="item-input text-area" rows="5" cols="30">Enter your comment here</textarea>
+		</div>
+		<div class="form-control">
+		    <input type="submit" id="submit" value="submit">
+		</div>
+	  </form>
+   </div>
+</div>
+ <script src=" https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
