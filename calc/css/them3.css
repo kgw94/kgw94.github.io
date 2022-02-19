@@ -1,0 +1,202 @@
+{
+    box-sizing:border-box;
+    padding:0px;
+    margin:0px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+   
+}
+:root{
+    --KyooTah:linear-gradient(#544a7d,#ffd452);
+    --UltraViolet:linear-gradient(#654ea3,#eaafc8);
+    --Shifty:linear-gradient(#636363,#a2ab58);
+    --RedSunset:linear-gradient(#355c7d,#6c5b7b,#c06c84);
+    --green:linear-gradient(#00b09b,#96c93d);
+    --selenium:linear-gradient(#3c3b3f,#605c3c);
+    --Terminal:linear-gradient(#000000,#0f9b0f);
+    --JetBlack:#343434;
+    --JetBlackCharcoal:linear-gradient(#080808,#343434);
+}
+body{
+    /*background-image: linear-gradient(#111d29,hsl(211, 53%, 20%));*/
+    /*  background-image:linear-gradient(#2b5876,#4e4376);*/
+    background-color:var(--JetBlack); 
+}
+
+#container{
+    width:80%;
+    margin:0 auto;
+    min-height:80%;
+    padding:10px;
+}
+#nav-bar{
+    width:100%;
+    padding:10px;
+    /*background-color:yellow;*/
+    min-height:250px;
+}
+#nav-bar h3 {
+    color:#0f9b0f;
+    text-shadow:1px 1px 1px #0f9b0f;
+}
+#content{
+   display:flex;
+   flex-wrap:nowrap;
+   align-items:center;
+   justify-content:space-around;
+   flex-direction: column;
+   color:#f1f1f1;
+  
+}
+.content-container{
+    width:100% !important;
+    margin-bottom:10px;
+    min-height:300px;
+    overflow:scroll !important;
+}
+.container_1{
+    margin-top:10px;
+    width:100%;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    align-items:center;
+}
+#result table th , #result table td{
+    text-align:center;
+}
+#result table ,#overview table ,#history table {
+    border-collapse: collapse;
+    margin-top:10px;   
+    /*background-color:var(--JetBlack);*/
+    background-color:#141414;
+    border:1px solid #080808;
+    border-radius:2px;
+    box-shadow:1px 1px 1px #141414;
+}
+#result table th , #result table td ,#overview table th ,#overview table td ,#history table th ,#history table td{
+    padding:10px;
+    /*background-image:linear-gradient(#201e1e,#1a1818);*/
+    /*background-image: linear-gradient(hsl(54, 91%, 9%),hsl(61, 100%, 16%),hsl(70, 35%, 13%));*/
+    /*background-image: linear-gradient(#00467f,#a5cc82);*/
+   
+}
+#result  table th ,#overview table th , #history table th{
+    /*color:rgb(219, 247, 164);*/
+    color:#0f9b0f;
+   
+}
+#result  table td > a ,#history table td > a{
+    color:#f1f1f1;
+    padding: 10px;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+#overview table td ,#history table td{
+   color:rgb(248, 248, 248);
+}
+#history table {
+    white-space:nowrap;
+}
+#history table th ,#history table td ,#overview table th ,#overview table td {
+    border:1px solid #3d3d3d;
+}
+#overview table th  {
+    color:#b4f03e;
+}
+#history table tbody > tr:nth-child(odd) {
+   background-color:#080808;
+}
+
+#footer {
+   
+}
+/* tabs */
+.tab  h3 {
+    color:#101820FF;
+    text-decoration:underline;
+}
+
+ul.cipher-list{
+    list-style-type:none;
+}
+
+h3 {
+    color:#ADEFD1FF;
+    padding:15px;
+}
+/* Style the tab */
+.tab {
+    overflow:auto;
+    /*
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    */
+    color:#00203FFF;
+   /* background-color:#ADEFD1FF;*/
+    background-color:#00b09b;
+    
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    color:#000;
+    background-color: #f1f1f1;
+    overflow:scroll;
+  }
+
+.cipher-container{
+    margin-top:10px;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:start;
+    border:1px solid #fff;
+    padding:10px;
+    background-color:#141414;
+    box-shadow:1px 1px 1px solid #000;
+    overflow: auto;
+    border-radius:2px;
+    height:auto;
+}
+.cipher-box{
+    width:200px;
+    height:100px;
+    text-align:center;
+    white-space:auto;
+    margin:10px 10px 10px;
+}
+.cipher-box p {
+   font-weight:bold;
+}
+.cipherSel{
+    cursor:pointer;
+    font-weight:bold;
+    font-size:20px !important;
+}
