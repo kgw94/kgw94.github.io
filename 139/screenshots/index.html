@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"> 
+  <style type="text/css">
+     #images{
+       display:flex;
+       flex-direction:row;
+       flex-wrap:wrap;
+       justify-content:space-around;
+    }
+  </style>
+</head>
+<body>
+<script type="text/javascript">
+  window.onload = function(){
+    var imgs= ["leedswinbullshit.jpg","fulldecode84points.jpg","2020 bullshit.jpg","2021uclbullshit.jpg","481bullshit.jpg","braga1-1redstarft.jpg"];
+    var root = document.querySelector("#images");
+    
+    if(root){
+       imgs.forEach((img)=>{
+           var fixed = document.createElement("<img>");
+           fixed.src = "/img/"+img+"";
+           root.appendChild(fixed);
+       });
+    }
+  };
+</script>
+<div id="container">
+  <div id="images"></div> 
+</div>
+</body>
+</html>
