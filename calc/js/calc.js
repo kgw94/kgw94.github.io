@@ -275,12 +275,19 @@ $(document).ready(function(){
                 'j':2,'k':4,'l':1,'m':5,'n':7,'o':2,'p':8,'q':5,'r':7,
                 's':4,'t':8,'u':1,'v':7,'w':2,'x':8,'y':7,'z':2
             }),
+            new Cipher('Pythagorean(n-2 mod 9)',
+            {
+                'a':7,'b':8,'c':1,'d':2,'e':3,'f':4,'g':5,'h':6,'i':7,
+                'j':8,'k':9,'l':1,'m':2,'n':3,'o':4,'p':5,'q':6,'r':7,
+                's':8,'t':9,'u':1,'v':2,'w':3,'x':4,'y':5,'z':6
+            })
         ]
         // configure activate defaults
         active.push({ "cipher":"English Ordinal","category":"English"});
         active.push({ "cipher":"Full reduction","category":"English"});
         active.push({ "cipher":"Reverse English Ordinal","category":"English"});
         active.push({ "cipher":"English Qaballa","category":"Thelemic systems"});
+        active.push({ "cipher":"Pythagorean(n-2 mod 9)","category":"Experimental"});
         
         buildCategory();
         addEvents();
