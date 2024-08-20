@@ -25,11 +25,21 @@ import { IcositetragonalGenerator } from "./IcositetragonalGenerator.js";
 import { AbundantNumber } from "./AbundantNumber.js";
 import { RectangularGenerator } from "./RectangularGenerator.js";
 import { FibonacciGenerator } from "./FibonacciGenerator.js";
+import { CompositeGenerator } from "./CompositeGenerator.js";
+import { OddNumberGenerator } from "./OddNumberGenerator.js";
+import { EvenNumberGenerator } from "./EvenNumberGenerator.js";
+import { StarNumberGenerator } from "./StarNumberGenerator.js";
+import { SquareFreeNumberGenerator } from "./SquareFreeNumberGenerator.js";
 
 const classMap = new Map();
 
 classMap.set("prime", num => new PrimeGenerator(num));
 classMap.set("square", num => new SquareGenerator(num));
+classMap.set("composite" , num => new CompositeGenerator(num));
+classMap.set("odd" , num => new OddNumberGenerator(num));
+classMap.set("even" , num => new EvenNumberGenerator(num));
+classMap.set("star" ,num => new StarNumberGenerator(num));
+classMap.set("square-free" ,num => new SquareFreeNumberGenerator(num));
 classMap.set("rectangular", num => new RectangularGenerator(num));
 classMap.set("triangular", num => new TriangularGenerator(num));
 classMap.set("pentagonal", num => new PentagonalGenerator(num));
