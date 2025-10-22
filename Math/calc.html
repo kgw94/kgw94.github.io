@@ -1,0 +1,149 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gematria Calculator — Non-Reduced Cipher</title>
+  <style>
+    :root{font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#0f172a}
+    body{background:#f8fafc;padding:28px}
+    .card{background:white;border-radius:12px;box-shadow:0 6px 24px rgba(2,6,23,.08);max-width:920px;margin:0 auto;padding:20px}
+    h1{font-size:20px;margin:0 0 8px}
+    p.lead{margin:0 0 18px;color:#475569}
+    .row{display:flex;gap:12px;align-items:center}
+    input[type=text]{flex:1;padding:10px 12px;border-radius:8px;border:1px solid #e6eef6;font-size:15px}
+    button{background:#0ea5a4;color:white;border:none;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+    button.secondary{background:#334155}
+    .small{font-size:13px;color:#64748b}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:8px 6px;text-align:left;border-bottom:1px solid #eef2f7}
+    .muted{color:#94a3b8;font-size:13px}
+    pre{background:#0f172a;color:#e6eef6;padding:12px;border-radius:8px;overflow:auto}
+    .controls{display:flex;gap:8px;align-items:center;margin-top:12px}
+    .result{margin-top:12px;padding:12px;background:#f1f9f9;border-radius:8px}
+    .kbd{background:#eef2f7;padding:4px 6px;border-radius:6px;font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Gematria Calculator — Non‑Reduced Cipher</h1>
+    <p class="lead">Uses the A→Z mapping you gave (unique 1–26 permutation). Type a phrase and see the total, per-letter breakdown and options.</p><div class="row">
+  <input id="phrase" type="text" placeholder="Type phrase like: Manchester City" />
+  <button id="calc">Calculate</button>
+  <button id="clear" class="secondary">Clear</button>
+</div>
+
+<div class="controls">
+  <label class="small"><input id="ignoreSpaces" type="checkbox" checked /> Ignore spaces</label>
+  <label class="small"><input id="ignoreNonLetters" type="checkbox" checked /> Ignore non-letters</label>
+  <label class="small"><input id="showBreakdown" type="checkbox" checked /> Show per-letter breakdown</label>
+  <div style="margin-left:auto" class="muted">Mapping: A=1 B=25 C=4 D=9 E=5 F=20 G=26 H=7 I=13 J=10 K=16 L=6 M=19 N=24 O=21 P=8 Q=17 R=18 S=3 T=15 U=11 V=14 W=23 X=22 Y=12 Z=2</div>
+</div>
+
+<div id="output" class="result" aria-live="polite">
+  Enter a phrase and press <span class="kbd">Calculate</span> (or press Enter).
+</div>
+
+<div id="breakdownArea"></div>
+
+<h3 style="margin-top:18px">Full Letter Map</h3>
+<table>
+  <thead><tr><th>Letter</th><th>Value</th><th>Letter</th><th>Value</th><th>Letter</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>A</td><td>1</td><td>B</td><td>25</td><td>C</td><td>4</td></tr>
+    <tr><td>D</td><td>9</td><td>E</td><td>5</td><td>F</td><td>20</td></tr>
+    <tr><td>G</td><td>26</td><td>H</td><td>7</td><td>I</td><td>13</td></tr>
+    <tr><td>J</td><td>10</td><td>K</td><td>16</td><td>L</td><td>6</td></tr>
+    <tr><td>M</td><td>19</td><td>N</td><td>24</td><td>O</td><td>21</td></tr>
+    <tr><td>P</td><td>8</td><td>Q</td><td>17</td><td>R</td><td>18</td></tr>
+    <tr><td>S</td><td>3</td><td>T</td><td>15</td><td>U</td><td>11</td></tr>
+    <tr><td>V</td><td>14</td><td>W</td><td>23</td><td>X</td><td>22</td></tr>
+    <tr><td>Y</td><td>12</td><td>Z</td><td>2</td><td></td><td></td></tr>
+  </tbody>
+</table>
+
+<p class="muted" style="margin-top:12px">Notes: The tool treats letters case-insensitively. When non-letters are included they are skipped unless you uncheck the box. Values come directly from the non-reduced permutation you provided.</p>
+
+  </div>  <script>
+    // Non-reduced cipher mapping (A → Z)
+    const mapping = {
+      A:1,B:25,C:4,D:9,E:5,F:20,G:26,H:7,I:13,J:10,K:16,L:6,M:19,N:24,O:21,P:8,Q:17,R:18,S:3,T:15,U:11,V:14,W:23,X:22,Y:12,Z:2
+    };
+
+    const phraseInput = document.getElementById('phrase');
+    const calcBtn = document.getElementById('calc');
+    const clearBtn = document.getElementById('clear');
+    const output = document.getElementById('output');
+    const breakdownArea = document.getElementById('breakdownArea');
+
+    function computeValue(text){
+      const ignoreSpaces = document.getElementById('ignoreSpaces').checked;
+      const ignoreNonLetters = document.getElementById('ignoreNonLetters').checked;
+      const showBreakdown = document.getElementById('showBreakdown').checked;
+
+      let cleaned = text;
+      if(ignoreSpaces) cleaned = cleaned.replace(/\s+/g,'');
+
+      let sum = 0;
+      const letters = [];
+
+      for(const ch of cleaned){
+        const up = ch.toUpperCase();
+        if(/[A-Z]/.test(up)){
+          const val = mapping[up];
+          if(typeof val === 'number'){
+            sum += val;
+            letters.push({letter:up,value:val});
+          } else {
+            // letter not in mapping
+            letters.push({letter:up,value:null});
+          }
+        } else {
+          if(!ignoreNonLetters) letters.push({letter:ch,value:null});
+        }
+      }
+
+      // render result
+      output.innerHTML = `<strong>Phrase:</strong> ${escapeHtml(text || '')}<br><strong>Total (non‑reduced):</strong> ${sum}`;
+
+      if(showBreakdown){
+        if(letters.length === 0) {
+          breakdownArea.innerHTML = '<p class="muted">No letters to show.</p>';
+        } else {
+          let rows = letters.map(l => `<tr><td>${escapeHtml(l.letter)}</td><td>${l.value===null?'-':l.value}</td></tr>`).join('\n');
+          breakdownArea.innerHTML = `\n            <h3 style="margin-top:12px">Per‑letter breakdown</h3>\n            <table><thead><tr><th>Char</th><th>Value</th></tr></thead><tbody>${rows}</tbody></table>`;
+        }
+      } else {
+        breakdownArea.innerHTML = '';
+      }
+
+      return sum;
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    calcBtn.addEventListener('click', ()=>{
+      computeValue(phraseInput.value);
+    });
+
+    phraseInput.addEventListener('keydown', (ev)=>{
+      if(ev.key === 'Enter'){
+        ev.preventDefault();
+        computeValue(phraseInput.value);
+      }
+    });
+
+    clearBtn.addEventListener('click', ()=>{
+      phraseInput.value = '';
+      output.innerHTML = 'Enter a phrase and press <span class="kbd">Calculate</span> (or press Enter).';
+      breakdownArea.innerHTML = '';
+    });
+
+    // Example prefill
+    phraseInput.value = 'Manchester city';
+    computeValue(phraseInput.value);
+  </script></body>
+</html>
