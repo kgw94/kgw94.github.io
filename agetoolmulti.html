@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manager Age Tool (Multi-REFDATE)</title>
+<style>
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0e0e0e;
+    color: #e0e0e0;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #1e90ff;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a1a1a;
+    color: #fff;
+    margin-bottom: 30px;
+  }
+  th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #333;
+  }
+  th {
+    background-color: #007bff;
+  }
+  tr:hover {
+    background-color: #222;
+  }
+  input, button {
+    padding: 8px 12px;
+    margin: 5px;
+    font-size: 14px;
+  }
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  input[type="date"], input[type="file"] {
+    cursor: pointer;
+  }
+  details {
+    background-color: #111;
+    border-radius: 6px;
+    padding: 10px 20px;
+    margin: 10px auto;
+    max-width: 600px;
+    color: #ccc;
+  }
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: #1e90ff;
+    margin-bottom: 6px;
+  }
+  .ref-date, .add-row, .import, .toggle {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .small-text {
+    font-size: 0.9em;
+    color: #ccc;
+  }
+</style>
+</head>
+<body>
+<h1>Manager Age Tool (Multi-REFDATE)</h1>
+
+<div class="toggle">
+  <label>
+    <input type="checkbox" id="includeEnd"> Include end date (+1 day)
+  </label>
+</div>
+
+<table id="managerTable">
+  <thead>
+    <tr>
+      <th>Manager</th>
+      <th>Club</th>
+      <th>Date of Birth</th>
+      <th>Ref Dates (comma separated)</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+    <tr>
+      <td>Pep Guardiola</td>
+      <td>Manchester City</td>
+      <td>1971-01-18</td>
+      <td>2024-12-31, 2025-06-01</td>
+    </tr>
+    <tr>
+      <td>Jürgen Klopp</td>
+      <td>Liverpool</td>
+      <td>1967-06-16</td>
+      <td>2025-01-01</td>
+    </tr>
+    <tr>
+      <td>Mikel Arteta</td>
+      <td>Arsenal</td>
+      <td>1982-03-26</td>
+      <td>2025-05-01, 2025-11-01</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="add-row">
+  <input type="text" id="newManager" placeholder="Manager Name">
+  <input type="text" id="newClub" placeholder="Club">
+  <input type="date" id="newDOB">
+  <input type="text" id="newRefDates" placeholder="Ref Dates (yyyy-mm-dd,...)">
+  <button onclick="addRow()">Add Manager</button>
+</div>
+
+<div class="import">
+  <label><strong>Import CSV (Manager,Club,DateOfBirth,RefDates):</strong></label>
+  <input type="file" id="csvFile" accept=".csv">
+</div>
+
+<div id="durationVariations"></div>
+
+<script>
+// Utility functions
+function daysBetween(a, b) {
+  return Math.floor((b - a) / (1000 * 60 * 60 * 24));
+}
+
+function calculateDurationVariations(startStr, endStr, includeEnd) {
+  const start = new Date(startStr);
+  const end = new Date(endStr);
+  let diffDays = daysBetween(start, end);
+  if (includeEnd) diffDays += 1;
+
+  const years = Math.floor(diffDays / 365.25);
+  const months = Math.floor(diffDays / 30.4375);
+  const weeks = Math.floor(diffDays / 7);
+  const remDays = diffDays % 7;
+  const monthsOnly = Math.floor((diffDays % 365.25) / 30.4375);
+  const daysLeft = Math.round(diffDays - (years * 365.25 + monthsOnly * 30.4375));
+
+  return { diffDays, years, monthsOnly, weeks, remDays, months, daysLeft };
+}
+
+function showDurationBox(title, start, end, includeEnd) {
+  const d = calculateDurationVariations(start, end, includeEnd);
+  return `
+    <details>
+      <summary>${title}</summary>
+      <div>0 Years, ${Math.floor(d.diffDays)} Days</div>
+      <div>0 Years, ${d.monthsOnly} Months, ${d.daysLeft} Days</div>
+      <div>0 Years, ${d.weeks} Weeks, ${d.remDays} Days</div>
+      <div>${d.monthsOnly} Months, ${d.daysLeft} Days</div>
+      <div>${d.weeks} Weeks, ${d.remDays} Days</div>
+      <div>${d.diffDays} Days Total</div>
+    </details>`;
+}
+
+function calculateAgeAndNextBirthday(dobStr, refStr, includeEnd) {
+  const dob = new Date(dobStr);
+  const ref = new Date(refStr);
+
+  let years = ref.getFullYear() - dob.getFullYear();
+  let lastBirthday = new Date(dob);
+  lastBirthday.setFullYear(ref.getFullYear());
+  if (ref < lastBirthday) {
+    years--;
+    lastBirthday.setFullYear(ref.getFullYear() - 1);
+  }
+
+  let daysOld = daysBetween(lastBirthday, ref);
+  if (includeEnd) daysOld++;
+
+  let nextBirthday = new Date(dob);
+  nextBirthday.setFullYear(ref.getFullYear());
+  if (ref >= nextBirthday) nextBirthday.setFullYear(ref.getFullYear() + 1);
+  let daysToNext = daysBetween(ref, nextBirthday);
+  if (includeEnd) daysToNext++;
+
+  return { years, daysOld, daysToNext, lastBirthday, nextBirthday };
+}
+
+function updateAll() {
+  const includeEnd = document.getElementById("includeEnd").checked;
+  const rows = document.querySelectorAll("#tableBody tr");
+  let variationsHTML = "";
+
+  rows.forEach(row => {
+    const manager = row.cells[0].textContent.trim();
+    const dob = row.cells[2].textContent.trim();
+    const refDates = row.cells[3].textContent.trim().split(",").map(x => x.trim()).filter(Boolean);
+
+    if (dob && refDates.length) {
+      refDates.forEach(refDate => {
+        const { years, daysOld, daysToNext, lastBirthday, nextBirthday } =
+          calculateAgeAndNextBirthday(dob, refDate, includeEnd);
+
+        variationsHTML += `<details><summary>${manager} — REFDATE: ${refDate}</summary>`;
+        variationsHTML += `<div><strong>Age to REFDATE:</strong> ${years} years, ${daysOld} days</div>`;
+        variationsHTML += `<div><strong>Days to next birthday:</strong> ${daysToNext} days</div>`;
+        variationsHTML += showDurationBox(`${manager} (Age Duration)`, lastBirthday, refDate, includeEnd);
+        variationsHTML += showDurationBox(`${manager} (Next Birthday Duration)`, refDate, nextBirthday, includeEnd);
+        variationsHTML += `</details>`;
+      });
+    }
+  });
+
+  document.getElementById("durationVariations").innerHTML = variationsHTML;
+}
+
+function addRow() {
+  const name = document.getElementById("newManager").value.trim();
+  const club = document.getElementById("newClub").value.trim();
+  const dob = document.getElementById("newDOB").value;
+  const refs = document.getElementById("newRefDates").value.trim();
+
+  if (!name || !club || !dob) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  const tbody = document.getElementById("tableBody");
+  const row = tbody.insertRow();
+  row.insertCell(0).textContent = name;
+  row.insertCell(1).textContent = club;
+  row.insertCell(2).textContent = dob;
+  row.insertCell(3).textContent = refs || "";
+
+  document.getElementById("newManager").value = "";
+  document.getElementById("newClub").value = "";
+  document.getElementById("newDOB").value = "";
+  document.getElementById("newRefDates").value = "";
+  updateAll();
+}
+
+function importCSV(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    const lines = e.target.result.split(/\r?\n/);
+    const tbody = document.getElementById("tableBody");
+    lines.forEach(line => {
+      const [manager, club, dob, refdates] = line.split(",").map(v => v.trim());
+      if (manager && club && dob) {
+        const row = tbody.insertRow();
+        row.insertCell(0).textContent = manager;
+        row.insertCell(1).textContent = club;
+        row.insertCell(2).textContent = dob;
+        row.insertCell(3).textContent = refdates || "";
+      }
+    });
+    updateAll();
+  };
+  reader.readAsText(file);
+}
+
+// Listeners
+document.getElementById("includeEnd").addEventListener("change", updateAll);
+document.getElementById("csvFile").addEventListener("change", e => {
+  if (e.target.files.length) importCSV(e.target.files[0]);
+});
+
+// Auto update when table cell content changes (e.g., user edits ref dates)
+document.addEventListener("input", updateAll);
+
+// Initialize
+updateAll();
+</script>
+</body>
+</html>
